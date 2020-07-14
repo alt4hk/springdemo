@@ -3,9 +3,11 @@ package com.alt4hk.springdemo.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Service;
 
 @Configuration
-@ComponentScan("com.alt4hk.springdemo.*")
+@ComponentScan(value = "com.alt4hk.springdemo.*",
+        excludeFilters = {@ComponentScan.Filter(classes = {Service.class})})
 public class AppConfig {
 
 //    @Bean(name="user")
