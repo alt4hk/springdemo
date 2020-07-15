@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 @Configuration
-@ComponentScan(value = "com.alt4hk.springdemo.*",
+@ComponentScan(value = "com.alt4hk.springdemo.*", lazyInit = true,
         excludeFilters = {@ComponentScan.Filter(classes = {Service.class})})
 public class AppConfig {
 
