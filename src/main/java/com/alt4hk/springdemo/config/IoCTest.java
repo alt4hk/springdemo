@@ -1,10 +1,14 @@
 package com.alt4hk.springdemo.config;
 
 
+import com.alt4hk.springdemo.intercept.MyInterceptor;
 import com.alt4hk.springdemo.pojo.BussinessPerson;
 import com.alt4hk.springdemo.pojo.ScopeBean;
 import com.alt4hk.springdemo.pojo.User;
 import com.alt4hk.springdemo.pojo.definition.Person;
+import com.alt4hk.springdemo.proxy.ProxyBean;
+import com.alt4hk.springdemo.service.HelloService;
+import com.alt4hk.springdemo.service.impl.HelloServiceImpl;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.springframework.context.ApplicationContext;
@@ -29,10 +33,14 @@ public class IoCTest {
 //        person.service();
 //        ctx.close();
 
-        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        ScopeBean sb1 = ctx.getBean(ScopeBean.class);
-        ScopeBean sb2 = ctx.getBean(ScopeBean.class);
-        System.out.println(sb1 == sb2);
+//        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+//        ScopeBean sb1 = ctx.getBean(ScopeBean.class);
+//        ScopeBean sb2 = ctx.getBean(ScopeBean.class);
+//        System.out.println(sb1 == sb2);
+
+        HelloService helloService = new HelloServiceImpl();
+        HelloService proxy = (HelloService) ProxyBean.getProxyBean(helloService, new MyInterceptor());
+        proxy.sayHello("aaa");
     }
 
 }
