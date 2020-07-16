@@ -13,6 +13,8 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.Transactional;
 
 public class IoCTest {
 
@@ -41,6 +43,9 @@ public class IoCTest {
         HelloService helloService = new HelloServiceImpl();
         HelloService proxy = (HelloService) ProxyBean.getProxyBean(helloService, new MyInterceptor());
         proxy.sayHello("aaa");
+
+
+//        PlatformTransactionManager
     }
 
 }
